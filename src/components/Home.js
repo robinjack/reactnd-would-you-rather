@@ -7,21 +7,46 @@ import Question from "./Question";
 
 class Home extends Component {
 
+    state = {
+        answered : false
+    }
+
+    toggleAnswered = () => {
+        this.setState( (prevState) =>({answered : !prevState.answered}))
+    }
+
     render() {
+        const {authedUser, questions} = this.props
+
         return (
             <div>
-            <div className={'topnav'}>
-            <Navigation/>
-            </div>
-            <div>
-                <h3 className={'answerType'}>Unanswered / Answered</h3>
+            <div className={'questionBtnContainer'}>
+                <button className={'questionCategoryBtn'}
+                    style={{'fontWeight' : this.state.answered ?
+                                'bold' : 'normal'
+                    }}
+                    disabled={!this.state.answered}
+                    onClick={this.toggleAnswered}
+                >Unanswered</button>
+                <button className={'questionCategoryBtn'}
+                    style={{'fontWeight' : !this.state.answered ?
+                        'bold' : 'normal'
+
+                }} disabled={this.state.answered}
+                onClick={this.toggleAnswered}
+                > Answered </button>
 
 
             </div>
                 <ul>
                 {
-                    Object.keys(this.props.questions).map(
-                        (questionId) => (<li key={questionId}><Question questionId={questionId}/></li>)
+
+                    Object.values(questions).filter(
+                        (question) => {
+                            let authedUserAnswered = question.optionOne.votes.concat(question.optionTwo.votes).includes(authedUser)
+                            return this.state.answered ? authedUserAnswered : !authedUserAnswered
+                        }).sort((a,b) => b.timestamp - a.timestamp).map(
+                        (question) => (<li key={question.id}><Question questionId={question.id}/></li>)
                     )
                 }
                 </ul>
@@ -31,8 +56,9 @@ class Home extends Component {
 
 }
 
-const mapStateToProps = ({questions}) => {
+const mapStateToProps = ({questions, authedUser}) => {
     return {
+        authedUser,
         questions: questions
     }
 }

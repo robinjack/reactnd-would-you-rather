@@ -1,10 +1,14 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import '../App.css';
 import Home from './Home'
 import {handleInitialData} from "../actions/shared";
 import {connect} from "react-redux";
 import Login from './Login'
-import {BrowserRouter as Router} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Navigation from "./Navigation";
+import AddQuestion from "./AddQuestion";
+import Leaderboard from "./Leaderboard";
+import QuestionPage from "./QuestionPage";
 
 class App extends Component {
 
@@ -22,7 +26,16 @@ class App extends Component {
     <div className="App">
         {!authedUser ?
             (<Login/>) :
-            (<Home/>)
+            (<Fragment>
+                <Navigation/>
+                <Switch>
+                    <Route path={'/add'} component={AddQuestion}/>
+                    <Route path={'/question/:questionId'} component={QuestionPage}/>
+                    <Route path={'/leaderboard'} component={Leaderboard}/>
+                    <Route path={'/'} exact component={Home}/>
+                </Switch>
+
+            </Fragment>)
         }
 
 
@@ -31,8 +44,8 @@ class App extends Component {
   )}
 }
 
-const mapStateToProps = state => {
-    return {authedUser: state.authedUser,
+const mapStateToProps = ({authedUser}) => {
+    return {authedUser
 
     }
 
