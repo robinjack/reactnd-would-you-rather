@@ -13,6 +13,8 @@ class User extends Component {
             <img className={'avatar'} src={user.avatarURL}/>
             <p style={{'fontWeight' : this.props.authedUser === user.id ? 'bold' : 'normal'}}>{user.name}</p>
             <div className={'question-icons'}>
+                <div>Questions asked: {user.questions.length} </div>
+                <div>Questions answered: {Object.keys(user.answers).length} </div>
                     <div className={'score'}> {userScore(user)} </div>
             </div>
         </div>)

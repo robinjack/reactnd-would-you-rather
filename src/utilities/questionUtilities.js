@@ -6,7 +6,7 @@ export const questionScore = question => {
 }
 
 export const userScore = user => {
-    return Object.keys(user.answers).length
+    return Object.keys(user.answers).length + user.questions.length
 }
 
 export const formatPercentage = num => {

@@ -28,7 +28,6 @@ class Question extends Component {
 
     handleVote = (option) => {
         return (e) => {
-            console.log("PROPS OF VOTING: ", this.props)
         e.preventDefault()
             const {questionId, authedUser, dispatch} = this.props
 

@@ -9,6 +9,7 @@ import Navigation from "./Navigation";
 import AddQuestion from "./AddQuestion";
 import Leaderboard from "./Leaderboard";
 import QuestionPage from "./QuestionPage";
+import NotFound from "./NotFound";
 
 class App extends Component {
 
@@ -33,6 +34,8 @@ class App extends Component {
                     <Route path={'/question/:questionId'} component={QuestionPage}/>
                     <Route path={'/leaderboard'} component={Leaderboard}/>
                     <Route path={'/'} exact component={Home}/>
+                    <Route component={NotFound}/>
+                    <Route path={'/404'} component={NotFound}/>
                 </Switch>
 
             </Fragment>)
