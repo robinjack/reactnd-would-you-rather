@@ -11,7 +11,7 @@ export default function questions (state = {}, action) {
         case ADD_QUESTION: {
             return {
                 ...state,
-                [action.formattedQuestion.id] : action.formattedQuestion
+                [action.question.formattedQuestion.id] : action.question.formattedQuestion
 
             }
 

@@ -28,13 +28,15 @@ export function removeQuestion (questionId) {
 
 export function handleAddQuestion(question) {
     return (dispatch) => {
-        return saveQuestion(question).then(() => {
-            return getInitialData().then(({questions}) => {
-            dispatch(receiveQuestions(questions)) })})
-            .catch (
-            (error) => {
-                alert("There was an error: ", error)
+        return saveQuestion(question).then(
+            (formattedQuestion) => {
+                dispatch(addQuestion({...question, formattedQuestion}))
             }
         )
+        //     .catch (
+        //     (error) => {
+        //         alert("There was an error: ", error)
+        //     }
+        // )
 
 } }

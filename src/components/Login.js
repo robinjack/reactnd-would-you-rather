@@ -24,8 +24,8 @@ class Login extends Component {
         const {users} = this.props
         return (<div>
             <h3>Login to Would You Rather</h3>
-            <select onChange={this.onSubmit} id={'authedUser'} defaultValue={'no-select'}>
-                <option key={'no-select'} disabled> -- select an option -- </option>
+            <select onChange={this.onSubmit} id={'authedUser'} defaultValue={'no-select'} value={'no-select'}>
+                <option key={'no-select'} > -- select an option -- </option>
                 {Object.values(users).map((user) => {
                     return (
                         <option key={user.id} value={user.id}>{user.name}</option>

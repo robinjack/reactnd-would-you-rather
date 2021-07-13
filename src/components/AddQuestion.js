@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {handleAddQuestion} from "../actions/questions";
-
+import {Redirect} from 'react-router-dom'
 
 class AddQuestion extends Component {
 
@@ -23,6 +23,7 @@ class AddQuestion extends Component {
         this.setState({optionOne: "",
         optionTwo : ""
         })
+        this.props.history.push('/')
 
     }
 
@@ -38,7 +39,7 @@ class AddQuestion extends Component {
 
     render() {
         return (<div>
-            <h3>Add Question</h3>
+            <h3>Would you rather</h3>
             <form onSubmit={this.onSubmit}>
                 <textarea placeholder={'Option One'}
                           value={this.state.optionOne}

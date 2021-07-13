@@ -45,7 +45,7 @@ class Question extends Component {
 
     render() {
         const {user, question} = this.props
-        return (<Link to={`/question/${question.id}`} className={'question'}>
+        return (<Link to={`/questions/${question.id}`} className={'question'}>
             <img className={'avatar'} src={user.avatarURL}/>
             <p style={{'fontWeight' : this.props.authedUser === user.id ? 'bold' : 'normal'}}>{user.name}</p>
             <div className={'question-icons'}>

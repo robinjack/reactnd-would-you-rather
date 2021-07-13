@@ -8,16 +8,17 @@ export default function users (state = {}, action) {
             return {
             ...state,
                 ...action.users}
+
         case ADD_QUESTION: {
-            const {authedUser} = action.author
-            const {users} = state.users
-            const {formattedQuestion} = action.formattedQuestion
+            console.log("ACtion: ", action)
+            const {author, formattedQuestion } = action.question
+            const users = state
 
             return {
                 ...users,
-                [authedUser]: {
-                    ...users[authedUser],
-                    questions: users[authedUser].questions.concat([formattedQuestion.id])
+                [author]: {
+                    ...users[author],
+                    questions: users[author].questions.concat([formattedQuestion.id])
                 }
             }
         }
